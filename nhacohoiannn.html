@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiến Trúc Nhà Cổ Hội An</title>
+    <style>
+	@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;600&display=swap');
+      body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #f8e6c0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        .header-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-bottom: 5px solid #a67c00;
+            filter: brightness(85%);
+            transition: transform 0.5s ease;
+        }
+        .header-image:hover {
+            transform: scale(1.05);
+        }
+        .menu-icon {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            background: #a67c00;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            z-index: 1010;
+            transition: transform 0.3s ease;
+            color: white;
+        }
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+		.navbar {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+            transition: background 0.3s;
+        }
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: #d35400;
+        }
+        .navbar a::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #d35400;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .navbar a:hover::after {
+            transform: scaleX(1);
+        }
+        .sidebar {
+            width: 300px;
+            background: rgba(102, 51, 0, 0.95);
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            left: -320px;
+            top: 1;
+            overflow-y: auto;
+            transition: left 0.4s ease-in-out;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 1008;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+        }
+        .sidebar.active {
+            left: 0;
+        }
+        .sidebar h2 {
+            text-align: center;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 10px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .sidebar ul li a {
+            color: #ffcc80;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+        }
+        .sidebar ul li a:hover {
+            color: #ffd700;
+        }
+        .container {
+            max-width: 1100px;
+            width: 90%;
+            background: #fff8e1;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+        h1 {
+            color: #663300;
+            font-size: 36px;
+            text-align: left;
+            border-bottom: 4px solid #a67c00;
+            padding-bottom: 12px;
+        }
+        .section {
+            margin-top: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #a67c00;
+        }
+        .section h2 {
+            color: #8b4513;
+            border-left: 5px solid #a67c00;
+            padding-left: 15px;
+            font-size: 28px;
+        }
+        .section p {
+            text-align: justify;
+            color: #4d2600;
+        }
+		 .content-section img {
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+		
+
+    </style>
+</head>
+<body>
+    <img src="https://c0.wallpaperflare.com/preview/11/495/674/vietnam-h%E1%BB%99i-an-street-hoian.jpg" alt="Hình ảnh Hội An" class="header-image">
+    
+    <button class="menu-icon" onclick="toggleSidebar()">&#9776;</button>
+    <div class="sidebar" id="sidebar">
+        <h2>Mục Lục</h2>
+        <ul>
+            <li><a href="#tongquan">Tổng quan</a></li>
+            <li><a href="#tieubieu">Những ngôi nhà cổ</a></li>
+            <li><a href="#ynghia">Ý nghĩa bảo tồn</a></li>
+            <li><a href="#baoton">Biện pháp bảo vệ</a></li>
+        </ul>
+    </div>
+	
+	<div id="sidebar" class="sidebar">
+        <a href="#">Trang chủ</a>
+        <a href="#">Lịch sử</a>
+        <a href="#">Kiến trúc</a>
+        <a href="#">Di sản</a>
+        <a href="#">Liên hệ</a>
+    </div>
+    
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Tours</a>
+        <a href="#">Deals</a>
+        <a href="#">Blogs</a>
+        <a href="#">About us</a>
+        <a href="#">Contact us</a>
+        <a href="#">Trip Ideas</a>
+    </div>
+    
+    <div class="container">
+        <h1>KIẾN TRÚC NHÀ CỔ HỘI AN - DI SẢN TỪ BÀN TAY NGHỆ NHÂN XƯA</h1>
+		<p><i>Chào mừng quý khách đến với Hội An, một đô thị cổ kính và quyến rũ, nơi mà thời gian dường như ngừng lại, lưu giữ những giá trị văn hóa và kiến trúc độc đáo từ hàng trăm năm trước. Hôm nay, tôi xin được giới thiệu về kiến trúc nhà cổ Hội An – di sản quý báu từ bàn tay tài hoa của các nghệ nhân xưa.</i></p>
+        
+        <div class="section" id="tongquan">
+            <h2>Tổng quan</h2>
+            <p>Phố cổ Hội An nổi bật với những ngôi nhà ống truyền thống, thường có một hoặc hai tầng, chiều ngang hẹp và chiều sâu kéo dài. Kết cấu chính của những ngôi nhà này là khung gỗ chắc chắn, với tường gạch hai bên. Mái nhà được lợp bằng ngói đất nung, tạo nên vẻ đẹp mộc mạc và gần gũi. Bố cục bên trong thường bao gồm gian buôn bán, gian sinh hoạt và gian thờ cúng, phản ánh nếp sống và văn hóa của người dân nơi đây.</p>
+			<img src="https://cafebiz.cafebizcdn.vn/162123310254002176/2023/2/1/hoi-an-10-1675219507903-1675219508196126668826.jpg" alt="Hình ảnh Hội An" width="600" height="400">
+	   </div>
+        
+        <div class="section" id="tieubieu">
+            <h2>Những ngôi nhà cổ tiêu biểu</h2>
+                <p>Các ngôi nhà cổ tại Hội An thường có kết cấu gỗ với mái ngói âm dương, sân trong rộng rãi và cửa chính mang phong cách truyền thống. Một số ngôi nhà tiêu biểu bao gồm Nhà cổ Tấn Ký, Nhà cổ Phùng Hưng và Nhà cổ Đức An.</p>
+			   <h3>Nhà cổ Quân Thắng</h3>
+			   			      <img src="https://qta.org.vn/wp-content/uploads/2024/02/nha-co-quan-thang-hoi-an.jpg" alt="Hình ảnh Hội An"
+			      <br><p>Tọa lạc tại số 77 Trần Phú, Hội An, nhà cổ Quân Thắng có tuổi đời hơn 150 năm và được xem là một trong những ngôi nhà cổ đẹp nhất phố Hội. Ngôi nhà từng thuộc sở hữu của một thương nhân giàu có, chuyên buôn bán đường biển vào thế kỷ 19. Với kiến trúc kiểu nhà trệt của người Hoa, chất liệu chủ yếu bằng gỗ quý chạm trổ tinh xảo, kết hợp hài hòa giữa phong cách Trung Hoa, Nhật Bản và Việt Nam, nơi đây không chỉ lưu giữ giá trị văn hóa mà còn là điểm đến hấp dẫn cho những ai yêu thích vẻ đẹp hoài cổ của Hội An.</p>
+			   </br>
+			   <h3>Hội quán Phúc Kiến </h3>
+			   			      <img src="https://danangbest.com/upload_content/hoi-quan-phuc-kien-2(1).webp" alt="Hình ảnh Hội An"
+			      <br><p>Hội quán Phúc Kiến (hay chùa Kim An) là công trình tiêu biểu của cộng đồng người Phúc Kiến tại Hội An, được xây dựng vào thế kỷ 17. Ban đầu, hội quán là nơi sinh hoạt của thương nhân Phúc Kiến, sau này trở thành nơi thờ Thiên Hậu Thánh Mẫu – vị thần bảo trợ cho ngư dân và thương nhân đường biển. Kiến trúc hội quán nổi bật với cổng tam quan rực rỡ, mái ngói uốn lượn, các bức phù điêu, tượng rồng chạm khắc tinh xảo, mang đậm dấu ấn văn hóa Trung Hoa.</p>			
+			   </br>
+			   <h3>Nhà thờ tộc</h3>
+			   			      <img src="https://danangbest.com/upload_content/nha-tho-toc-tran-4.webp" alt="Hình ảnh Hội An"
+			    <br><p>Nét kiến trúc độc đáo xưa ở Việt Nam cũng được xuất hiện tại Hội An với nhà thờ tộc. Đây được coi là một dạng kiến trúc đặc biệt. Bởi các nơi thờ tự của dòng họ đều được xây dựng theo dạngkhuôn viên và có bao gồm cả: sân vườn, cổng, tường rào kiên cố, khu vực nhà phụ,...Nhà thờ tộc Trần có diện tích lên đến 1.500m2, được vị quan chính trực Trần Tứ Nhạc xây dựng vào năm 1802. Ngôi nhà được ông xây dựng làm nơi thờ cúng tổ tiên tộc Trần và mong ước để lại cho con cháu đời sau.</p>
+			   </br>
+			   <h3>Chùa Bà Mụ Hội An </h3>
+			      			      <img src="https://cdn.xanhsm.com/2025/01/ecddcf06-chua-hoi-an-3.jpg" alt="Hình ảnh Hội An"
+			    <br><p>Di tích lịch sử nổi tiếng đã tồn tại lâu đời, là nơi thờ phụng linh thiêng, thể hiện nét văn hoá tín ngưỡng của người dân phố Hội. Chùa Bà Mụ Hội An được khởi dựng vào năm 1626 tại một địa điểm khác, sau đó chuyển đến địa điểm hiện nay. Cùng với kiến trúc độc đáo, tráng lệ nhưng không kém phần cổ kính, chùa Bà Mụ dần trở thành một phần ở Hội An mà bạn không thể bỏ lỡ.</p>
+		          </br>
+		</div>
+        
+        <div class="section" id="ynghia">
+            <h2>Ý nghĩa bảo tồn</h2>
+            <p>Hội An không chỉ là một đô thị cổ mà còn là một bảo tàng sống về văn hóa và kiến trúc. Việc bảo tồn các công trình kiến trúc cổ tại đây có ý nghĩa quan trọng trong việc giữ gìn bản sắc dân tộc, bảo vệ di sản văn hóa và tôn vinh những giá trị lịch sử. Những ngôi nhà cổ như Quân Thắng, Hội quán Phúc Kiến, Chùa Cầu không chỉ phản ánh sự giao thoa giữa văn hóa Việt – Hoa – Nhật mà còn là dấu ấn vàng son của một thương cảng sầm uất thế kỷ XVII – XVIII.</p>
+          <p>Bảo tồn kiến trúc Hội An không chỉ giúp lưu giữ ký ức lịch sử mà còn đóng vai trò quan trọng trong phát triển du lịch bền vững. Những công trình cổ kính với kiến trúc độc đáo chính là điểm thu hút du khách trong và ngoài nước, góp phần thúc đẩy kinh tế địa phương. Đồng thời, việc giữ gìn nét đẹp nguyên bản của Hội An còn giúp nâng cao ý thức cộng đồng về giá trị của di sản, khuyến khích sự tham gia của người dân vào công tác bảo tồn.</p>
+		  <p>Giữa nhịp sống hiện đại, Hội An vẫn giữ được vẻ đẹp cổ kính, trầm mặc, trở thành biểu tượng của sự gắn kết giữa quá khứ và hiện tại. Bảo tồn kiến trúc cổ không chỉ là giữ gìn di sản, mà còn là giữ lại hồn cốt của một vùng đất, một nền văn hóa đã in sâu trong lịch sử dân tộc.</p>
+	      			<img src="https://static.vinwonders.com/2022/04/nha-tho-toc-tran-2-700x435.jpg" alt="Hình ảnh Hội An" width="600" height="400">
+
+	 </div>
+        
+        <div class="section" id="baoton">
+            <h2>Biện pháp bảo vệ</h2>
+            <p>Để bảo vệ và duy trì những công trình kiến trúc quý báu này, chính quyền và người dân Hội An đã thực hiện nhiều biện pháp như:
+ Quy định bảo tồn: Ban hành các quy định nghiêm ngặt về việc tu bổ, sửa chữa nhà cổ, đảm bảo giữ nguyên kiến trúc và vật liệu truyền thống.
+Giáo dục cộng đồng: Tăng cường nhận thức của người dân và du khách về tầm quan trọng của việc bảo tồn di sản, khuyến khích tham gia vào các hoạt động bảo vệ di sản văn hóa.
+Hợp tác quốc tế: Phối hợp với các tổ chức quốc tế để trao đổi kinh nghiệm, hỗ trợ kỹ thuật và tài chính trong công tác bảo tồn.
+Nhờ những nỗ lực này, Hội An đã và đang duy trì được vẻ đẹp nguyên sơ, trở thành điểm đến hấp dẫn cho du khách trong và ngoài nước, đồng thời giữ gìn được những giá trị văn hóa, lịch sử vô giá cho các thế hệ mai sau.
+</p>
+			<img src="https://visitquangnam.com/wp-content/uploads/2022/10/hoi-an-ancient-town-architecture-2.jpg" alt="Hình ảnh Hội An" width="600" height="400">
+       
+	   </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            let sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("active");
+        }
+    </script>
+	
+	 <footer style="background-color: #111; color: white; padding: 40px 20px; width: 100%; height: 50vh; display: flex; align-items: center;">
+        <div style="display: flex; justify-content: space-between; width: 100%; max-width: 1200px; margin: auto; flex-wrap: wrap;">
+            <div style="max-width: 300px;">
+                <p>Book your tours and get the best care</p>
+                <p>📍 Au Co, Cua Dai, Hoi An</p>
+                <p>📞 +84xxxxxxxx</p>
+                <p>✉ contact@tourguide.com</p>
+            </div>
+            <div>
+                <h3>Top Destinations</h3>
+                <ul>
+                    <li>Bảo Trâm</li>
+                    <li>Thuỳ Trâm</li>
+                    <li>Hồng Nhung</li>
+                    <li>12.12</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Information</h3>
+                <ul>
+                    <li>Help & FAQs</li>
+                    <li>Partner with us</li>
+                    <li>About us</li>
+                    <li>Contact us</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Follow Us</h3>
+                <p>Facebook | YouTube | Instagram</p>
+                <h3>Payment Channels</h3>
+                <p>Visa | MasterCard | PayPal | Apple Pay | Google Pay</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
